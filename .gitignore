@@ -1,0 +1,20 @@
+# AI / レビュー関連（外部に公開しない）
+.ai-reviewer.md
+review.sh
+CLAUDE.md
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# 環境変数
+.env
+.env.*
+
+# DB関連ディレクトリ（MVPでは不使用）
+db/
+
+# OS
+.DS_Store

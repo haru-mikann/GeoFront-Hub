@@ -1,0 +1,3 @@
+# ルートの .gitignore でカバーされていない backend 固有のもの
+*.egg-info/
+dist/
