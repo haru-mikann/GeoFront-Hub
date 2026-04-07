@@ -1,0 +1,78 @@
+.task-input-row {
+  @apply flex gap-2 mb-3;
+}
+
+.task-input {
+  @apply flex-1 bg-transparent font-mono text-xs px-2 py-1 border outline-none;
+  border-color: var(--color-border);
+  color: var(--color-text);
+
+  &::placeholder {
+    color: var(--color-text-mute);
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+}
+
+.task-list {
+  @apply flex flex-col gap-1 list-none;
+}
+
+.task-item {
+  @apply flex items-center gap-2 font-mono text-xs py-1;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.completed {
+    .task-text {
+      text-decoration: line-through;
+      color: var(--color-text-mute);
+    }
+
+    .task-check {
+      color: var(--color-green);
+    }
+  }
+}
+
+.task-check {
+  @apply bg-transparent border-none cursor-pointer font-mono text-xs shrink-0;
+  color: var(--color-text-dim);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.task-text {
+  @apply flex-1;
+}
+
+.task-delete {
+  @apply bg-transparent border-none cursor-pointer font-mono text-xs shrink-0 opacity-30;
+  color: var(--color-alert);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.task-empty {
+  @apply text-xs font-mono py-2;
+  color: var(--color-text-mute);
+}
+
+.status-line {
+  @apply text-xs font-mono;
+  color: var(--color-text-dim);
+
+  &.error {
+    color: var(--color-alert);
+  }
+}

@@ -1,0 +1,20 @@
+<app-ui-card label="MAGI MARKET FEED" title="Financial Index">
+  @if (loading) {
+    <p class="status-line">// FETCHING DATA...</p>
+  } @else if (error) {
+    <p class="status-line error">// CONNECTION FAILED — API UNREACHABLE</p>
+  } @else {
+    <div class="ticker-list">
+      @for (t of tickers; track t.symbol) {
+        <div class="ticker-row">
+          <span class="ticker-symbol">{{ t.symbol }}</span>
+          <span class="ticker-name">{{ t.name }}</span>
+          <span class="ticker-price">{{ t.price | number:'1.2-2' }} {{ t.currency }}</span>
+          <span class="ticker-change" [class.positive]="t.change >= 0" [class.negative]="t.change < 0">
+            {{ t.change >= 0 ? '+' : '' }}{{ t.change_pct | number:'1.2-2' }}%
+          </span>
+        </div>
+      }
+    </div>
+  }
+</app-ui-card>

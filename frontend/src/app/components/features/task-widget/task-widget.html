@@ -1,0 +1,32 @@
+<app-ui-card label="MAGI TASK MANAGEMENT" title="Pending Operations">
+  @if (loading) {
+    <p class="status-line">// LOADING TASK DATABASE...</p>
+  } @else if (error) {
+    <p class="status-line error">// CONNECTION FAILED — API UNREACHABLE</p>
+  } @else {
+    <div class="task-input-row">
+      <input
+        class="task-input"
+        type="text"
+        placeholder="> NEW TASK..."
+        [(ngModel)]="newTaskText"
+        (keyup.enter)="addTask()"
+      />
+      <app-ui-button (click)="addTask()">ADD</app-ui-button>
+    </div>
+
+    <ul class="task-list">
+      @for (task of tasks; track task.id) {
+        <li class="task-item" [class.completed]="task.completed">
+          <button class="task-check" (click)="toggleTask(task)">
+            {{ task.completed ? '[x]' : '[ ]' }}
+          </button>
+          <span class="task-text">{{ task.text }}</span>
+          <button class="task-delete" (click)="deleteTask(task)">DEL</button>
+        </li>
+      } @empty {
+        <li class="task-empty">// NO PENDING OPERATIONS</li>
+      }
+    </ul>
+  }
+</app-ui-card>

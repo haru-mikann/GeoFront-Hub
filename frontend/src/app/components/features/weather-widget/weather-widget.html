@@ -1,0 +1,26 @@
+<app-ui-card label="MAGI ENVIRONMENTAL FEED" title="Weather Status">
+  @if (loading) {
+    <p class="status-line">// FETCHING DATA...</p>
+  } @else if (error) {
+    <p class="status-line error">// CONNECTION FAILED — API UNREACHABLE</p>
+  } @else if (data) {
+    <div class="weather-grid">
+      <div class="weather-row">
+        <span class="field-label">LOC</span>
+        <span class="field-value">{{ data.location }}</span>
+      </div>
+      <div class="weather-row">
+        <span class="field-label">TEMP</span>
+        <span class="field-value accent">{{ data.temperature | number:'1.1-1' }}°C</span>
+      </div>
+      <div class="weather-row">
+        <span class="field-label">HUM</span>
+        <span class="field-value">{{ data.humidity }}%</span>
+      </div>
+      <div class="weather-row">
+        <span class="field-label">COND</span>
+        <span class="field-value green">{{ data.condition | uppercase }}</span>
+      </div>
+    </div>
+  }
+</app-ui-card>

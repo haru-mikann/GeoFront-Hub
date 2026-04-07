@@ -1,0 +1,49 @@
+.ticker-list {
+  @apply flex flex-col gap-2;
+}
+
+.ticker-row {
+  @apply flex items-center gap-2 font-mono text-xs;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.4rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ticker-symbol {
+  @apply uppercase font-mono tracking-wide w-16 shrink-0;
+  color: var(--color-amber);
+}
+
+.ticker-name {
+  @apply flex-1 truncate;
+  color: var(--color-text-dim);
+}
+
+.ticker-price {
+  @apply shrink-0;
+  color: var(--color-text);
+}
+
+.ticker-change {
+  @apply shrink-0 w-16 text-right;
+
+  &.positive {
+    color: var(--color-green);
+  }
+
+  &.negative {
+    color: var(--color-alert);
+  }
+}
+
+.status-line {
+  @apply text-xs font-mono;
+  color: var(--color-text-dim);
+
+  &.error {
+    color: var(--color-alert);
+  }
+}
