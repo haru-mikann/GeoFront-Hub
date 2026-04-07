@@ -9,7 +9,7 @@
         class="task-input"
         type="text"
         placeholder="> NEW TASK..."
-        [(ngModel)]="newTaskText"
+        [(ngModel)]="newTaskTitle"
         (keyup.enter)="addTask()"
       />
       <app-ui-button (click)="addTask()">ADD</app-ui-button>
@@ -17,11 +17,11 @@
 
     <ul class="task-list">
       @for (task of tasks; track task.id) {
-        <li class="task-item" [class.completed]="task.completed">
+        <li class="task-item" [class.completed]="task.done">
           <button class="task-check" (click)="toggleTask(task)">
-            {{ task.completed ? '[x]' : '[ ]' }}
+            {{ task.done ? '[x]' : '[ ]' }}
           </button>
-          <span class="task-text">{{ task.text }}</span>
+          <span class="task-text">{{ task.title }}</span>
           <button class="task-delete" (click)="deleteTask(task)">DEL</button>
         </li>
       } @empty {

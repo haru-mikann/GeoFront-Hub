@@ -5,9 +5,9 @@ import { UiCard } from '../../ui/ui-card/ui-card';
 import { UiButton } from '../../ui/ui-button/ui-button';
 
 interface Task {
-  id: string;
-  text: string;
-  completed: boolean;
+  id: number;
+  title: string;
+  done: boolean;
 }
 
 @Component({
@@ -18,7 +18,7 @@ interface Task {
 })
 export class TaskWidget implements OnInit {
   tasks: Task[] = [];
-  newTaskText = '';
+  newTaskTitle = '';
   loading = true;
   error = false;
 
@@ -42,18 +42,18 @@ export class TaskWidget implements OnInit {
   }
 
   addTask() {
-    const text = this.newTaskText.trim();
-    if (!text) return;
-    this.http.post<Task>('/api/tasks', { text }).subscribe({
+    const title = this.newTaskTitle.trim();
+    if (!title) return;
+    this.http.post<Task>('/api/tasks', { title }).subscribe({
       next: (task) => {
         this.tasks.push(task);
-        this.newTaskText = '';
+        this.newTaskTitle = '';
       },
     });
   }
 
   toggleTask(task: Task) {
-    this.http.put<Task>(`/api/tasks/${task.id}`, { completed: !task.completed }).subscribe({
+    this.http.put<Task>(`/api/tasks/${task.id}`, { done: !task.done }).subscribe({
       next: (updated) => {
         const idx = this.tasks.findIndex((t) => t.id === updated.id);
         if (idx !== -1) this.tasks[idx] = updated;
