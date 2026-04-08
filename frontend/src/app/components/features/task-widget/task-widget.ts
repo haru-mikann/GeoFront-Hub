@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ApiService, Task } from '../../../services/api.service';
 import { UiCard } from '../../ui/ui-card/ui-card';
 import { UiButton } from '../../ui/ui-button/ui-button';
-
-interface Task {
-  id: number;
-  title: string;
-  done: boolean;
-}
 
 @Component({
   selector: 'app-task-widget',
@@ -22,14 +16,14 @@ export class TaskWidget implements OnInit {
   loading = true;
   error = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
     this.loadTasks();
   }
 
   loadTasks() {
-    this.http.get<Task[]>('/api/tasks').subscribe({
+    this.api.getTasks().subscribe({
       next: (res) => {
         this.tasks = res;
         this.loading = false;
@@ -44,7 +38,7 @@ export class TaskWidget implements OnInit {
   addTask() {
     const title = this.newTaskTitle.trim();
     if (!title) return;
-    this.http.post<Task>('/api/tasks', { title }).subscribe({
+    this.api.addTask(title).subscribe({
       next: (task) => {
         this.tasks.push(task);
         this.newTaskTitle = '';
@@ -53,7 +47,7 @@ export class TaskWidget implements OnInit {
   }
 
   toggleTask(task: Task) {
-    this.http.put<Task>(`/api/tasks/${task.id}`, { done: !task.done }).subscribe({
+    this.api.updateTask(task.id, { done: !task.done }).subscribe({
       next: (updated) => {
         const idx = this.tasks.findIndex((t) => t.id === updated.id);
         if (idx !== -1) this.tasks[idx] = updated;
@@ -62,7 +56,7 @@ export class TaskWidget implements OnInit {
   }
 
   deleteTask(task: Task) {
-    this.http.delete(`/api/tasks/${task.id}`).subscribe({
+    this.api.deleteTask(task.id).subscribe({
       next: () => {
         this.tasks = this.tasks.filter((t) => t.id !== task.id);
       },

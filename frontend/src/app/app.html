@@ -1,16 +1,35 @@
-<main class="dashboard">
-  <header class="dashboard-header">
-    <span class="terminal-label">NERV HQ // MAGI SYSTEM</span>
-    <h1>GEOFRONT HUB<span class="cursor"></span></h1>
-    <span class="terminal-label">TACTICAL OPERATIONS DASHBOARD — ONLINE</span>
-  </header>
+<div class="shell">
 
-  <div class="dashboard-grid">
-    <app-weather-widget />
-    <app-finance-widget />
-    <app-task-widget />
-    <app-terminal-log />
+  <!-- Left sidebar: 20% -->
+  <aside class="shell__sidebar">
+    <app-sidebar-menu />
+  </aside>
+
+  <!-- Right main: 80% -->
+  <div class="shell__main">
+    <header class="main-header">
+      <div class="header-left">
+        <span class="terminal-label">NERV HQ // MAGI SYSTEM</span>
+        <h1>GEOFRONT HUB<span class="cursor"></span></h1>
+      </div>
+      <div class="header-right">
+        <span class="terminal-label">TACTICAL OPERATIONS DASHBOARD — ONLINE</span>
+      </div>
+    </header>
+
+    <div class="widget-grid">
+      <!-- Top row: Weather + Finance -->
+      <div class="widget-grid__top">
+        <app-weather-widget />
+        <app-finance-widget />
+      </div>
+      <!-- Bottom row: Tasks (full width) -->
+      <div class="widget-grid__bottom">
+        <app-task-widget />
+      </div>
+    </div>
+
+    <router-outlet />
   </div>
 
-  <router-outlet />
-</main>
+</div>

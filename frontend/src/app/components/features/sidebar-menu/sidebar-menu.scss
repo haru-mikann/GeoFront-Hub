@@ -1,0 +1,110 @@
+.sidebar {
+  @apply flex flex-col h-full;
+  background: var(--color-bg-panel);
+  border-right: 1px solid var(--color-border);
+  padding: 1.25rem 0;
+  position: relative;
+
+  /* Right accent line */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-primary) 0%, transparent 100%);
+  }
+}
+
+.sidebar-brand {
+  @apply flex flex-col items-center gap-1 mb-8 px-4;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1.25rem;
+}
+
+.brand-tag {
+  @apply text-xs;
+}
+
+.brand-logo {
+  font-size: 1.8rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: normal;
+  letter-spacing: 0.4em;
+  color: var(--color-amber);
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  @apply text-xs;
+}
+
+.nav-list {
+  @apply flex flex-col gap-1 flex-1 list-none px-2;
+}
+
+.nav-item {
+  @apply flex items-center gap-3 px-3 py-2 cursor-pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+
+  &:hover:not(.disabled) {
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+    background: rgba(255, 102, 0, 0.05);
+  }
+
+  &.active {
+    color: var(--color-green);
+    border-left-color: var(--color-green);
+    background: rgba(0, 255, 65, 0.05);
+  }
+
+  &.disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.nav-icon {
+  @apply shrink-0 w-4 text-center;
+  font-size: 0.85rem;
+}
+
+.nav-label {
+  @apply flex-1;
+}
+
+.nav-badge {
+  @apply text-xs;
+  color: var(--color-text-mute);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-footer {
+  @apply flex flex-col gap-2 px-4 pt-4;
+  border-top: 1px solid var(--color-border);
+}
+
+.status-row {
+  @apply flex items-center gap-2;
+}
+
+.status-dot {
+  @apply w-1.5 h-1.5 rounded-full shrink-0;
+
+  &.ok    { background: var(--color-green); box-shadow: 0 0 4px var(--color-green); }
+  &.warn  { background: var(--color-warn); }
+  &.error { background: var(--color-alert); }
+}
+
+.status-text {
+  @apply text-xs;
+  color: var(--color-text-mute);
+}

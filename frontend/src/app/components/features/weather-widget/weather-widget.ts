@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DecimalPipe, UpperCasePipe } from '@angular/common';
+import { ApiService, WeatherData } from '../../../services/api.service';
 import { UiCard } from '../../ui/ui-card/ui-card';
-
-interface WeatherData {
-  location: string;
-  temperature: number;
-  humidity: number;
-  condition: string;
-}
 
 @Component({
   selector: 'app-weather-widget',
@@ -21,10 +14,10 @@ export class WeatherWidget implements OnInit {
   error = false;
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.http.get<WeatherData>('/api/weather').subscribe({
+    this.api.getWeather().subscribe({
       next: (res) => {
         this.data = res;
         this.loading = false;
