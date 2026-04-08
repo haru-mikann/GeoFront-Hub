@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface WeatherData {
   location: string;
@@ -32,7 +33,7 @@ export interface Task {
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly base = 'http://localhost:8000';
+  private readonly base = environment.apiBase;
 
   constructor(private http: HttpClient) {}
 
