@@ -1,0 +1,15 @@
+<div class="nerv-card">
+  @if (label || title) {
+    <div class="nerv-card__header">
+      @if (label) {
+        <span class="nerv-card__label terminal-label">{{ label }}</span>
+      }
+      @if (title) {
+        <h2 class="nerv-card__title">{{ title }}</h2>
+      }
+    </div>
+  }
+  <div class="nerv-card__body">
+    <ng-content />
+  </div>
+</div>

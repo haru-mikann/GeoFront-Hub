@@ -1,0 +1,35 @@
+.weather-grid {
+  @apply flex flex-col gap-2;
+}
+
+.weather-row {
+  @apply flex items-center gap-3;
+}
+
+.field-label {
+  @apply text-xs font-mono uppercase tracking-widest w-12 shrink-0;
+  color: var(--color-text-dim);
+}
+
+.field-value {
+  @apply text-sm font-mono;
+  color: var(--color-text);
+
+  &.accent {
+    color: var(--color-amber);
+    font-size: 1.1rem;
+  }
+
+  &.green {
+    color: var(--color-green);
+  }
+}
+
+.status-line {
+  @apply text-xs font-mono;
+  color: var(--color-text-dim);
+
+  &.error {
+    color: var(--color-alert);
+  }
+}
